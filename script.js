@@ -1,40 +1,59 @@
-function loader() {
-  var text = document.getElementById('txt')
-  var img = document.getElementById('img')
-  var good = document.getElementById('good')
-  var src = document.getElementById('img')
+function verify(){
+  var date = new Date()
+  var year = date.getFullYear() //Recebe ano atual
+  var formYear = document.getElementById('birthdayInput')
+  var res = document.querySelector('div#result')
 
-  var day = new Date()
-  var hourString = day.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
-  var time = day.getHours()
-  text.innerHTML = `It's ${hourString} o'clock`
-
-  if (time >= 0 && time < 12) {
-    //Good morning
-    good.innerHTML = `Good morning`
-
-    img = document.createElement('img')
-    img.src = './images/morning.png'
-    src.appendChild(img)
-
-    document.body.style.background = '#d5d6d5'
-  } else if (time >= 12 && time < 18){
-    //Good evening
-    good.innerHTML = `Good evening`
-
-    img = document.createElement('img')
-    img.src = './images/evening.png'
-    src.appendChild(img)
-
-    document.body.style.background = '#e1964a'
+  if (formYear.value.length == 0 || Number(formYear.value) > year) {
+    alert('[ERROR] Check the fields and try again')
   } else {
-    //Good night
-    good.innerHTML = `Good night`
+    var inputGender = document.getElementsByName("radioGender")
+    var age = year - Number(formYear.value)
+    var gender = ''
+    var img = document.createElement('img')
+    img.setAttribute('id', 'photo')
+    if (inputGender[0].checked) {
+      gender = 'Man'
+      if (age >= 0 && age < 10){
+        //baby
+        img.setAttribute('src', 'images/baby-m.jpg')
+        img.setAttribute('class', 'photo')
+      } else if (age < 22){
+        //Young man
+        img.setAttribute('src', 'images/young-m.jpg')
+        img.setAttribute('class', 'photo')
+      } else if (age < 50) {
+        //Adult
+        img.setAttribute('src', 'images/adult-m.jpg')
+        img.setAttribute('class', 'photo')
+      } else if (age >= 50) {
+        //Old man
+        img.setAttribute('src', 'images/old-m.jpg')
+        img.setAttribute('class', 'photo')
+      }
+    } else if (inputGender[1].checked) {
+      gender = 'Woman'
+      if (age >= 0 && age < 10){
+        //baby
+        img.setAttribute('src', 'images/baby-f.jpg')
+        img.setAttribute('class', 'photo')
+      } else if (age < 22){
+        //Young wonmen
+        img.setAttribute('src', 'images/young-f.jpg')
+        img.setAttribute('class', 'photo')
+      } else if (age < 50) {
+        //Adult
+        img.setAttribute('src', 'images/adult-f.jpg')
+        img.setAttribute('class', 'photo')
+      } else if (age >= 50) {
+        //Old women
+        img.setAttribute('src', 'images/old-f.jpg')
+        img.setAttribute('class', 'photo')
+      }
+    }
+    res.getElementsByClassName.textAlign = 'center'
+    res.innerHTML = `<p> Gender: ${gender} <br> Age: ${age} </p>`
+    res.appendChild(img)
 
-    img = document.createElement('img')
-    img.src = './images/night.png'
-    src.appendChild(img)
-
-    document.body.style.background = '#182f30'
   }
 }

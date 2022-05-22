@@ -7,17 +7,25 @@
   <title>Hello time</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body onload="loader()">
+<body>
   <header>
-    <h1>What time is it?</h1>
+    <h1>Age checker</h1>
   </header>
   <section>
     <div>
-      <p id="txt"></p>
-      <p id="good"></p>
+      <label for="bithdayInput">Year of birth</label>
+      <input class="inputField" type="number" id="birthdayInput" name="birthdayInput" min="0">
+      <div id="genderInput">
+        <label for="radioGender">Man</label>
+        <input class="inputRadio" type="radio" name="radioGender" id="manInput" checked>
+        <label for="radioGender">Woman</label>
+        <input class="inputRadio" type="radio" name="radioGender" id="womanInput">
+      </div>
+      <input class="primaryBtn" type="button" value="Submit" onclick="verify()">
     </div>
-    <div id="img">
 
+    <div id="result">
+      <p>Fill in the fields above to see the result</p>
     </div>
   </section>
   <footer>
